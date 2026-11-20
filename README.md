@@ -15,6 +15,10 @@ Click **ⓘ** next to the query button in Explore to see the Python call and Azu
 
 ![Graph Lab process map showing the Topic Graph, Entity Graph, and Retriever 1 paths](docs/screenshots/process-map.png)
 
+**Topic + Entity Graph.** In this fictional example, Atlas Vault appears in the overlap between **Backups** and **Capacity**. The inspector shows the matching passage from each topic. Graph Lab computes the topic overlay; the arrows represent entity relationships.
+
+![Atlas Vault selected at the intersection of two translucent topic circles, with evidence from both topics in the inspector](docs/screenshots/topic-entity-graph.png)
+
 **Retriever 1 playground.** Compare direct index search with Minimal and Low knowledge base retrieval using the same fictional policy question. The cards show the deployed resource names and query-planning models.
 
 ![Three-way Retriever 1 comparison showing direct index, extractive knowledge base, and agentic knowledge base results](docs/screenshots/retriever-comparison.png)
