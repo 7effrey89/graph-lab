@@ -9,6 +9,20 @@ All query modes use Foundry IQ with no local graph, ranking, or answer fallback.
 
 Click **ⓘ** next to the query button in Explore to see the Python call and Azure AI Search REST request for the current mode, strategy, and question. Graph Lab uses the live knowledge source definition to resolve its demo index for Topic Graph and direct Entity Graph. The displayed Topic Graph query targets the resolved content index directly and does not need a knowledge source or knowledge base. Opening the preview does not execute the query or display credentials.
 
+## Screenshots
+
+**Process map.** Follow the Topic Graph, Entity Graph, and Retriever 1 paths from Azure setup through indexing and querying.
+
+![Graph Lab process map showing the Topic Graph, Entity Graph, and Retriever 1 paths](docs/screenshots/process-map.png)
+
+**Retriever 1 playground.** Compare direct index search with Minimal and Low knowledge base retrieval using the same fictional policy question. The cards show the deployed resource names and query-planning models.
+
+![Three-way Retriever 1 comparison showing direct index, extractive knowledge base, and agentic knowledge base results](docs/screenshots/retriever-comparison.png)
+
+**Entity Graph ontology.** Inspect the Python definition next to the diagram of entity types and their relationships.
+
+![Python ontology definition beside a diagram connecting Person, Organization, Product, and ProductFeature](docs/screenshots/entity-ontology.png)
+
 ## Live Azure setup
 
 Select **Azure resources** in the diagram for shared prerequisites, deployment controls, and the checklist. Choose the full suite to see deployment steps for both graphs and Retriever 1. **Build + link topic index** links back to Azure resources for deployment checks and keeps the publishing and linking code, verification example, and live playground on the topic page. **Upload files to Blob** shows Entity Graph storage and ingestion details.
