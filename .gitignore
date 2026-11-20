@@ -1,0 +1,19 @@
+# Local deployment state and configuration
+/.graph-suite-endpoint
+/.retriever-endpoint
+/.graph-suite-endpoint.tmp
+/.retriever-endpoint.tmp
+.env
+.env.*
+App.config
+appsettings*.json
+
+# Local data and builder outputs
+/exports/
+/notes-build/
+
+# Dependencies and caches
+node_modules/
+__pycache__/
+*.py[cod]
+.venv/

@@ -1,0 +1,478 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Graph Lab | Foundry IQ</title>
+  <link rel="stylesheet" href="/style.css">
+  <script src="/app.js" defer></script>
+  <script src="/vendor/cytoscape.min.js" defer></script>
+  <script src="/topic-api.js" type="module"></script>
+  <script src="/index-browser.js" type="module"></script>
+</head>
+<body>
+  <header class="top"><div class="frame"><strong>◈ Graph Lab</strong><span>NoteAssistant / Foundry IQ</span><span class="pill" id="badge">Live · Microsoft Entra</span></div></header>
+  <main class="frame">
+    <div class="hero">
+      <p class="eyebrow">KNOWLEDGE GRAPHS / PUBLIC PREVIEW</p>
+      <h1>Explore your meetings.</h1>
+      <p>Find recurring themes with a topic graph, or follow explicit relationships with an entity graph.</p>
+    </div>
+    <div class="process-header">
+      <figure class="process-overview" aria-labelledby="process-caption">
+        <figcaption id="process-caption">End-to-end process · select a node for details <span id="process-location" aria-live="polite"></span></figcaption>
+        <ul class="process-legend" aria-label="Path colors">
+          <li class="path-content">Regular content index</li>
+          <li class="path-topic">Topic Graph</li>
+          <li class="path-entity">Entity Graph</li>
+          <li>Shared setup</li>
+          <li class="path-combined">Topic + Entity overlay</li>
+        </ul>
+        <div class="process-diagram" role="region" aria-label="Clickable process flowchart" tabindex="0">
+          <!-- BEGIN GENERATED MERMAID -->
+          <svg id="my-svg" width="100%" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" class="flowchart" viewBox="0 0 2006.2734375 352.5" role="graphics-document document" aria-roledescription="flowchart-v2"><g><marker id="my-svg_flowchart-v2-pointEnd" class="marker flowchart-v2" viewBox="0 0 10 10" refX="5" refY="5" markerUnits="userSpaceOnUse" markerWidth="8" markerHeight="8" orient="auto"><path d="M 0 0 L 10 5 L 0 10 z" class="arrowMarkerPath"/></marker><marker id="my-svg_flowchart-v2-pointStart" class="marker flowchart-v2" viewBox="0 0 10 10" refX="4.5" refY="5" markerUnits="userSpaceOnUse" markerWidth="8" markerHeight="8" orient="auto"><path d="M 0 5 L 10 10 L 10 0 z" class="arrowMarkerPath"/></marker><marker id="my-svg_flowchart-v2-pointEnd-margin" class="marker flowchart-v2" viewBox="0 0 11.5 14" refX="11.5" refY="7" markerUnits="userSpaceOnUse" markerWidth="10.5" markerHeight="14" orient="auto"><path d="M 0 0 L 11.5 7 L 0 14 z" class="arrowMarkerPath"/></marker><marker id="my-svg_flowchart-v2-pointStart-margin" class="marker flowchart-v2" viewBox="0 0 11.5 14" refX="1" refY="7" markerUnits="userSpaceOnUse" markerWidth="11.5" markerHeight="14" orient="auto"><polygon points="0,7 11.5,14 11.5,0" class="arrowMarkerPath"/></marker><marker id="my-svg_flowchart-v2-circleEnd" class="marker flowchart-v2" viewBox="0 0 10 10" refX="11" refY="5" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="11" orient="auto"><circle cx="5" cy="5" r="5" class="arrowMarkerPath"/></marker><marker id="my-svg_flowchart-v2-circleStart" class="marker flowchart-v2" viewBox="0 0 10 10" refX="-1" refY="5" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="11" orient="auto"><circle cx="5" cy="5" r="5" class="arrowMarkerPath"/></marker><marker id="my-svg_flowchart-v2-circleEnd-margin" class="marker flowchart-v2" viewBox="0 0 10 10" refY="5" refX="12.25" markerUnits="userSpaceOnUse" markerWidth="14" markerHeight="14" orient="auto"><circle cx="5" cy="5" r="5" class="arrowMarkerPath"/></marker><marker id="my-svg_flowchart-v2-circleStart-margin" class="marker flowchart-v2" viewBox="0 0 10 10" refX="-2" refY="5" markerUnits="userSpaceOnUse" markerWidth="14" markerHeight="14" orient="auto"><circle cx="5" cy="5" r="5" class="arrowMarkerPath"/></marker><marker id="my-svg_flowchart-v2-crossEnd" class="marker cross flowchart-v2" viewBox="0 0 11 11" refX="12" refY="5.2" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="11" orient="auto"><path d="M 1,1 l 9,9 M 10,1 l -9,9" class="arrowMarkerPath"/></marker><marker id="my-svg_flowchart-v2-crossStart" class="marker cross flowchart-v2" viewBox="0 0 11 11" refX="-1" refY="5.2" markerUnits="userSpaceOnUse" markerWidth="11" markerHeight="11" orient="auto"><path d="M 1,1 l 9,9 M 10,1 l -9,9" class="arrowMarkerPath"/></marker><marker id="my-svg_flowchart-v2-crossEnd-margin" class="marker cross flowchart-v2" viewBox="0 0 15 15" refX="17.7" refY="7.5" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="12" orient="auto"><path d="M 1,1 L 14,14 M 1,14 L 14,1" class="arrowMarkerPath"/></marker><marker id="my-svg_flowchart-v2-crossStart-margin" class="marker cross flowchart-v2" viewBox="0 0 15 15" refX="-3.5" refY="7.5" markerUnits="userSpaceOnUse" markerWidth="12" markerHeight="12" orient="auto"><path d="M 1,1 L 14,14 M 1,14 L 14,1" class="arrowMarkerPath"/></marker><g class="root"><g class="clusters"/><g class="edgePaths"><path d="M155.156,169.5L157.323,169.5C159.49,169.5,163.823,169.5,167.49,169.5C171.156,169.5,174.156,169.5,175.656,169.5L177.156,169.5" id="my-svg-L_resources_identity_0" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" data-edge="true" data-et="edge" data-id="L_resources_identity_0" data-points="W3sieCI6MTU1LjE1NjI1LCJ5IjoxNjkuNX0seyJ4IjoxNjguMTU2MjUsInkiOjE2OS41fSx7IngiOjE4MS4xNTYyNSwieSI6MTY5LjV9XQ==" data-look="classic" marker-end="url(#my-svg_flowchart-v2-pointEnd)"/><path d="M349.406,169.5L351.573,169.5C353.74,169.5,358.073,169.5,361.74,169.5C365.406,169.5,368.406,169.5,369.906,169.5L371.406,169.5" id="my-svg-L_identity_models_0" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" data-edge="true" data-et="edge" data-id="L_identity_models_0" data-points="W3sieCI6MzQ5LjQwNjI1LCJ5IjoxNjkuNX0seyJ4IjozNjIuNDA2MjUsInkiOjE2OS41fSx7IngiOjM3NS40MDYyNSwieSI6MTY5LjV9XQ==" data-look="classic" marker-end="url(#my-svg_flowchart-v2-pointEnd)"/><path d="M460.636,152L472.856,134.833C485.075,117.667,509.514,83.333,538.323,66.167C567.132,49,600.31,49,633.488,49C666.667,49,699.845,49,717.937,49.142C736.029,49.285,739.035,49.57,740.538,49.712L742.041,49.855" id="my-svg-L_models_index_0" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" data-edge="true" data-et="edge" data-id="L_models_index_0" data-points="W3sieCI6NDYwLjYzNjQxMDc4ODM4MTc0LCJ5IjoxNTJ9LHsieCI6NTMzLjk1MzEyNSwieSI6NDl9LHsieCI6NjMzLjQ4ODI4MTI1LCJ5Ijo0OX0seyJ4Ijo3MzMuMDIzNDM3NSwieSI6NDl9LHsieCI6NzQ2LjAyMzQzNzUsInkiOjUwLjIzMjIyNzQ4ODE1MTY2fV0=" data-look="classic" marker-end="url(#my-svg_flowchart-v2-pointEnd)"/><path d="M670.747,242.5L681.127,237.625C691.506,232.75,712.265,223,737.856,195.884C763.448,168.767,793.872,124.284,809.084,102.043L824.296,79.802" id="my-svg-L_blob_index_0" class="edge-thickness-normal edge-pattern-dotted edge-thickness-normal edge-pattern-solid flowchart-link" data-edge="true" data-et="edge" data-id="L_blob_index_0" data-points="W3sieCI6NjcwLjc0NzQzMDY0ODM5NTcsInkiOjI0Mi41fSx7IngiOjczMy4wMjM0Mzc1LCJ5IjoyMTMuMjV9LHsieCI6ODI2LjU1NDIzMTY2NTMxNiwieSI6NzYuNX1d" data-look="classic" marker-end="url(#my-svg_flowchart-v2-pointEnd)"/><path d="M931.023,59L933.19,59C935.357,59,939.69,59,949.858,59C960.026,59,976.029,59,984.03,59L992.031,59" id="my-svg-L_index_push_0" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" data-edge="true" data-et="edge" data-id="L_index_push_0" data-points="W3sieCI6OTMxLjAyMzQzNzUsInkiOjU5fSx7IngiOjk0NC4wMjM0Mzc1LCJ5Ijo1OX0seyJ4Ijo5OTYuMDMxMjUsInkiOjU5fV0=" data-look="classic" marker-end="url(#my-svg_flowchart-v2-pointEnd)"/><path d="M1135.832,41.5L1145.862,38.833C1155.891,36.167,1175.949,30.833,1205.999,28.167C1236.048,25.5,1276.089,25.5,1316.129,25.5C1356.169,25.5,1396.21,25.5,1434.902,25.5C1473.594,25.5,1510.938,25.5,1548.281,25.5C1585.625,25.5,1622.969,25.5,1643.141,25.5C1663.313,25.5,1666.313,25.5,1667.813,25.5L1669.313,25.5" id="my-svg-L_push_contentkb_0" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" data-edge="true" data-et="edge" data-id="L_push_contentkb_0" data-points="W3sieCI6MTEzNS44MzI0MzkzNjU2NzE3LCJ5Ijo0MS41fSx7IngiOjExOTYuMDA3ODEyNSwieSI6MjUuNX0seyJ4IjoxMzE2LjEyODkwNjI1LCJ5IjoyNS41fSx7IngiOjE0MzYuMjUsInkiOjI1LjV9LHsieCI6MTU0OC4yODEyNSwieSI6MjUuNX0seyJ4IjoxNjYwLjMxMjUsInkiOjI1LjV9LHsieCI6MTY3My4zMTI1LCJ5IjoyNS41fV0=" data-look="classic" marker-end="url(#my-svg_flowchart-v2-pointEnd)"/><path d="M1144,59L1152.668,59C1161.336,59,1178.672,59,1207.36,59C1236.048,59,1276.089,59,1316.129,59C1356.169,59,1396.21,59,1434.902,59C1473.594,59,1510.938,59,1548.281,59C1585.625,59,1622.969,59,1659.45,59C1695.931,59,1731.549,59,1767.168,59C1802.786,59,1838.405,59,1865.209,71.747C1892.013,84.494,1910.003,109.988,1918.998,122.735L1927.993,135.482" id="my-svg-L_push_retriever_0" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" data-edge="true" data-et="edge" data-id="L_push_retriever_0" data-points="W3sieCI6MTE0NCwieSI6NTl9LHsieCI6MTE5Ni4wMDc4MTI1LCJ5Ijo1OX0seyJ4IjoxMzE2LjEyODkwNjI1LCJ5Ijo1OX0seyJ4IjoxNDM2LjI1LCJ5Ijo1OX0seyJ4IjoxNTQ4LjI4MTI1LCJ5Ijo1OX0seyJ4IjoxNjYwLjMxMjUsInkiOjU5fSx7IngiOjE3NjcuMTY3OTY4NzUsInkiOjU5fSx7IngiOjE4NzQuMDIzNDM3NSwieSI6NTl9LHsieCI6MTkzMC4yOTk0NjU3Nzc2MzQ5LCJ5IjoxMzguNzV9XQ==" data-look="classic" marker-end="url(#my-svg_flowchart-v2-pointEnd)"/><path d="M1861.023,25.5L1863.19,25.5C1865.357,25.5,1869.69,25.5,1881.454,43.785C1893.217,62.069,1912.411,98.639,1922.008,116.923L1931.605,135.208" id="my-svg-L_contentkb_retriever_0" class="edge-thickness-normal edge-pattern-dotted edge-thickness-normal edge-pattern-solid flowchart-link" data-edge="true" data-et="edge" data-id="L_contentkb_retriever_0" data-points="W3sieCI6MTg2MS4wMjM0Mzc1LCJ5IjoyNS41fSx7IngiOjE4NzQuMDIzNDM3NSwieSI6MjUuNX0seyJ4IjoxOTMzLjQ2MzQ0NzA2MDIyOTYsInkiOjEzOC43NX1d" data-look="classic" marker-end="url(#my-svg_flowchart-v2-pointEnd)"/><path d="M1092.688,76.5L1109.908,89.792C1127.128,103.083,1161.568,129.667,1180.288,142.958C1199.008,156.25,1202.008,156.25,1203.508,156.25L1205.008,156.25" id="my-svg-L_push_vectors_0" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" data-edge="true" data-et="edge" data-id="L_push_vectors_0" data-points="W3sieCI6MTA5Mi42ODc3NDEwMDI1NzA2LCJ5Ijo3Ni41fSx7IngiOjExOTYuMDA3ODEyNSwieSI6MTU2LjI1fSx7IngiOjEyMDkuMDA3ODEyNSwieSI6MTU2LjI1fV0=" data-look="classic" marker-end="url(#my-svg_flowchart-v2-pointEnd)"/><path d="M1423.25,156.25L1425.417,156.25C1427.583,156.25,1431.917,156.25,1435.583,156.25C1439.25,156.25,1442.25,156.25,1443.75,156.25L1445.25,156.25" id="my-svg-L_vectors_topics_0" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" data-edge="true" data-et="edge" data-id="L_vectors_topics_0" data-points="W3sieCI6MTQyMy4yNSwieSI6MTU2LjI1fSx7IngiOjE0MzYuMjUsInkiOjE1Ni4yNX0seyJ4IjoxNDQ5LjI1LCJ5IjoxNTYuMjV9XQ==" data-look="classic" marker-end="url(#my-svg_flowchart-v2-pointEnd)"/><path d="M1579.035,138.75L1592.581,131.042C1606.127,123.333,1633.22,107.917,1649.979,100.208C1666.738,92.5,1673.164,92.5,1676.377,92.5L1679.59,92.5" id="my-svg-L_topics_topicquery_0" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" data-edge="true" data-et="edge" data-id="L_topics_topicquery_0" data-points="W3sieCI6MTU3OS4wMzQ5MjY0NzA1ODgzLCJ5IjoxMzguNzV9LHsieCI6MTY2MC4zMTI1LCJ5Ijo5Mi41fSx7IngiOjE2ODMuNTg5ODQzNzUsInkiOjkyLjV9XQ==" data-look="classic" marker-end="url(#my-svg_flowchart-v2-pointEnd)"/><path d="M1647.313,141.444L1649.479,141.12C1651.646,140.796,1655.979,140.148,1661.211,139.824C1666.443,139.5,1672.573,139.5,1675.638,139.5L1678.703,139.5" id="my-svg-L_topics_topickb_0" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" data-edge="true" data-et="edge" data-id="L_topics_topickb_0" data-points="W3sieCI6MTY0Ny4zMTI1LCJ5IjoxNDEuNDQzNjU0MTE0MzY1NDJ9LHsieCI6MTY2MC4zMTI1LCJ5IjoxMzkuNX0seyJ4IjoxNjgyLjcwMzEyNSwieSI6MTM5LjV9XQ==" data-look="classic" marker-end="url(#my-svg_flowchart-v2-pointEnd)"/><path d="M1647.313,171.056L1649.479,171.38C1651.646,171.704,1655.979,172.352,1675.955,172.676C1695.931,173,1731.549,173,1767.168,173C1802.786,173,1838.405,173,1857.733,172.629C1877.061,172.258,1880.099,171.517,1881.619,171.146L1883.138,170.775" id="my-svg-L_topics_retriever_0" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" data-edge="true" data-et="edge" data-id="L_topics_retriever_0" data-points="W3sieCI6MTY0Ny4zMTI1LCJ5IjoxNzEuMDU2MzQ1ODg1NjM0NTh9LHsieCI6MTY2MC4zMTI1LCJ5IjoxNzN9LHsieCI6MTc2Ny4xNjc5Njg3NSwieSI6MTczfSx7IngiOjE4NzQuMDIzNDM3NSwieSI6MTczfSx7IngiOjE4ODcuMDIzNDM3NSwieSI6MTY5LjgyNjk1ODEwNTY0NjY0fV0=" data-look="classic" marker-end="url(#my-svg_flowchart-v2-pointEnd)"/><path d="M1851.633,139.5L1855.365,139.5C1859.096,139.5,1866.56,139.5,1871.811,139.871C1877.061,140.242,1880.099,140.983,1881.619,141.354L1883.138,141.725" id="my-svg-L_topickb_retriever_0" class="edge-thickness-normal edge-pattern-dotted edge-thickness-normal edge-pattern-solid flowchart-link" data-edge="true" data-et="edge" data-id="L_topickb_retriever_0" data-points="W3sieCI6MTg1MS42MzI4MTI1LCJ5IjoxMzkuNX0seyJ4IjoxODc0LjAyMzQzNzUsInkiOjEzOS41fSx7IngiOjE4ODcuMDIzNDM3NSwieSI6MTQyLjY3MzA0MTg5NDM1MzM2fV0=" data-look="classic" marker-end="url(#my-svg_flowchart-v2-pointEnd)"/><path d="M1587.297,173.75L1599.466,179.208C1611.636,184.667,1635.974,195.583,1650.372,201.042C1664.771,206.5,1669.229,206.5,1671.458,206.5L1673.688,206.5" id="my-svg-L_topics_combined_0" class="edge-thickness-normal edge-pattern-dotted edge-thickness-normal edge-pattern-solid flowchart-link" data-edge="true" data-et="edge" data-id="L_topics_combined_0" data-points="W3sieCI6MTU4Ny4yOTcxMDgyMDg5NTUzLCJ5IjoxNzMuNzV9LHsieCI6MTY2MC4zMTI1LCJ5IjoyMDYuNX0seyJ4IjoxNjc3LjY4NzUsInkiOjIwNi41fV0=" data-look="classic" marker-end="url(#my-svg_flowchart-v2-pointEnd)"/><path d="M464.766,187L476.297,199.167C487.828,211.333,510.891,235.667,523.922,247.833C536.953,260,539.953,260,541.453,260L542.953,260" id="my-svg-L_models_blob_0" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" data-edge="true" data-et="edge" data-id="L_models_blob_0" data-points="W3sieCI6NDY0Ljc2NTcxMTMyNTk2NjgzLCJ5IjoxODd9LHsieCI6NTMzLjk1MzEyNSwieSI6MjYwfSx7IngiOjU0Ni45NTMxMjUsInkiOjI2MH1d" data-look="classic" marker-end="url(#my-svg_flowchart-v2-pointEnd)"/><path d="M720.023,268.694L722.19,268.912C724.357,269.129,728.69,269.565,735.615,269.782C742.54,270,752.057,270,756.816,270L761.574,270" id="my-svg-L_blob_ontology_0" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" data-edge="true" data-et="edge" data-id="L_blob_ontology_0" data-points="W3sieCI6NzIwLjAyMzQzNzUsInkiOjI2OC42OTM5Mjg4MDk3MDEzM30seyJ4Ijo3MzMuMDIzNDM3NSwieSI6MjcwfSx7IngiOjc2NS41NzQyMTg3NSwieSI6MjcwfV0=" data-look="classic" marker-end="url(#my-svg_flowchart-v2-pointEnd)"/><path d="M911.473,270L916.898,270C922.323,270,933.173,270,940.098,270C947.023,270,950.023,270,951.523,270L953.023,270" id="my-svg-L_ontology_source_0" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" data-edge="true" data-et="edge" data-id="L_ontology_source_0" data-points="W3sieCI6OTExLjQ3MjY1NjI1LCJ5IjoyNzB9LHsieCI6OTQ0LjAyMzQzNzUsInkiOjI3MH0seyJ4Ijo5NTcuMDIzNDM3NSwieSI6MjcwfV0=" data-look="classic" marker-end="url(#my-svg_flowchart-v2-pointEnd)"/><path d="M1183.008,270L1185.174,270C1187.341,270,1191.674,270,1196.227,270C1200.779,270,1205.549,270,1207.935,270L1210.32,270" id="my-svg-L_source_indexer_0" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" data-edge="true" data-et="edge" data-id="L_source_indexer_0" data-points="W3sieCI6MTE4My4wMDc4MTI1LCJ5IjoyNzB9LHsieCI6MTE5Ni4wMDc4MTI1LCJ5IjoyNzB9LHsieCI6MTIxNC4zMjAzMTI1LCJ5IjoyNzB9XQ==" data-look="classic" marker-end="url(#my-svg_flowchart-v2-pointEnd)"/><path d="M1417.938,270L1420.99,270C1424.042,270,1430.146,270,1436.043,270C1441.94,270,1447.63,270,1450.475,270L1453.32,270" id="my-svg-L_indexer_entity_0" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" data-edge="true" data-et="edge" data-id="L_indexer_entity_0" data-points="W3sieCI6MTQxNy45Mzc1LCJ5IjoyNzB9LHsieCI6MTQzNi4yNSwieSI6MjcwfSx7IngiOjE0NTcuMzIwMzEyNSwieSI6MjcwfV0=" data-look="classic" marker-end="url(#my-svg_flowchart-v2-pointEnd)"/><path d="M1639.242,245.642L1642.754,244.702C1646.266,243.762,1653.289,241.881,1674.61,240.94C1695.931,240,1731.549,240,1767.168,240C1802.786,240,1838.405,240,1864.839,229.474C1891.274,218.948,1908.524,197.896,1917.149,187.37L1925.774,176.844" id="my-svg-L_entity_retriever_0" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" data-edge="true" data-et="edge" data-id="L_entity_retriever_0" data-points="W3sieCI6MTYzOS4yNDIxODc1LCJ5IjoyNDUuNjQyMjU5NDE0MjI1OTV9LHsieCI6MTY2MC4zMTI1LCJ5IjoyNDB9LHsieCI6MTc2Ny4xNjc5Njg3NSwieSI6MjQwfSx7IngiOjE4NzQuMDIzNDM3NSwieSI6MjQwfSx7IngiOjE5MjguMzA4ODg1MjYxMTk0LCJ5IjoxNzMuNzV9XQ==" data-look="classic" marker-end="url(#my-svg_flowchart-v2-pointEnd)"/><path d="M1639.242,261.881L1642.754,261.567C1646.266,261.254,1653.289,260.627,1668.188,254.612C1683.088,248.597,1705.863,237.194,1717.251,231.492L1728.639,225.791" id="my-svg-L_entity_combined_0" class="edge-thickness-normal edge-pattern-dotted edge-thickness-normal edge-pattern-solid flowchart-link" data-edge="true" data-et="edge" data-id="L_entity_combined_0" data-points="W3sieCI6MTYzOS4yNDIxODc1LCJ5IjoyNjEuODgwNzUzMTM4MDc1M30seyJ4IjoxNjYwLjMxMjUsInkiOjI2MH0seyJ4IjoxNzMyLjIxNTI0NTMyNzEwMjgsInkiOjIyNH1d" data-look="classic" marker-end="url(#my-svg_flowchart-v2-pointEnd)"/><path d="M1639.242,278.119L1642.754,278.433C1646.266,278.746,1653.289,279.373,1664.689,279.687C1676.09,280,1691.867,280,1699.756,280L1707.645,280" id="my-svg-L_entity_gql_0" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" data-edge="true" data-et="edge" data-id="L_entity_gql_0" data-points="W3sieCI6MTYzOS4yNDIxODc1LCJ5IjoyNzguMTE5MjQ2ODYxOTI0N30seyJ4IjoxNjYwLjMxMjUsInkiOjI4MH0seyJ4IjoxNzExLjY0NDUzMTI1LCJ5IjoyODB9XQ==" data-look="classic" marker-end="url(#my-svg_flowchart-v2-pointEnd)"/><path d="M1599.973,296.3L1610.029,301.417C1620.086,306.533,1640.199,316.767,1655.276,321.883C1670.353,327,1680.393,327,1685.413,327L1690.434,327" id="my-svg-L_entity_entitykb_0" class="edge-thickness-normal edge-pattern-solid edge-thickness-normal edge-pattern-solid flowchart-link" data-edge="true" data-et="edge" data-id="L_entity_entitykb_0" data-points="W3sieCI6MTU5OS45NzI4NjAzNDI1Nzc5LCJ5IjoyOTYuMjk5OTk5MjM3MDYwNTV9LHsieCI6MTY2MC4zMTI1LCJ5IjozMjd9LHsieCI6MTY5NC40MzM1OTM3NSwieSI6MzI3fV0=" data-look="classic" marker-end="url(#my-svg_flowchart-v2-pointEnd)"/><path d="M1839.902,327L1845.589,327C1851.276,327,1862.65,327,1878.353,302.077C1894.057,277.154,1914.09,227.308,1924.107,202.385L1934.123,177.461" id="my-svg-L_entitykb_retriever_0" class="edge-thickness-normal edge-pattern-dotted edge-thickness-normal edge-pattern-solid flowchart-link" data-edge="true" data-et="edge" data-id="L_entitykb_retriever_0" data-points="W3sieCI6MTgzOS45MDIzNDM3NSwieSI6MzI3fSx7IngiOjE4NzQuMDIzNDM3NSwieSI6MzI3fSx7IngiOjE5MzUuNjE1MTI4NTY4ODE0LCJ5IjoxNzMuNzV9XQ==" data-look="classic" marker-end="url(#my-svg_flowchart-v2-pointEnd)"/></g><g class="edgeLabels"><g class="edgeLabel"><g class="label" data-id="L_resources_identity_0" transform="translate(0, 0)"><text y="-10.1" text-anchor="middle"><tspan class="text-outer-tspan row" x="0" y="-0.1em" dy="1.1em" text-anchor="middle"/></text></g></g><g><rect class="background"/></g><g class="edgeLabel"><g class="label" data-id="L_identity_models_0" transform="translate(0, 0)"><text y="-10.1" text-anchor="middle"><tspan class="text-outer-tspan row" x="0" y="-0.1em" dy="1.1em" text-anchor="middle"/></text></g></g><g><rect class="background"/></g><g class="edgeLabel"><g class="label" data-id="L_models_index_0" transform="translate(0, 0)"><text y="-10.1" text-anchor="middle"><tspan class="text-outer-tspan row" x="0" y="-0.1em" dy="1.1em" text-anchor="middle"/></text></g></g><g><rect class="background"/></g><g class="edgeLabel"><g class="label" data-id="L_blob_index_0" transform="translate(0, 0)"><text y="-10.1" text-anchor="middle"><tspan class="text-outer-tspan row" x="0" y="-0.1em" dy="1.1em" text-anchor="middle"/></text></g></g><g><rect class="background"/></g><g class="edgeLabel"><g class="label" data-id="L_index_push_0" transform="translate(0, 0)"><text y="-10.1" text-anchor="middle"><tspan class="text-outer-tspan row" x="0" y="-0.1em" dy="1.1em" text-anchor="middle"/></text></g></g><g><rect class="background"/></g><g class="edgeLabel"><g class="label" data-id="L_push_contentkb_0" transform="translate(0, 0)"><text y="-10.1" text-anchor="middle"><tspan class="text-outer-tspan row" x="0" y="-0.1em" dy="1.1em" text-anchor="middle"/></text></g></g><g><rect class="background"/></g><g class="edgeLabel"><g class="label" data-id="L_push_retriever_0" transform="translate(0, 0)"><text y="-10.1" text-anchor="middle"><tspan class="text-outer-tspan row" x="0" y="-0.1em" dy="1.1em" text-anchor="middle"/></text></g></g><g><rect class="background"/></g><g class="edgeLabel"><g class="label" data-id="L_contentkb_retriever_0" transform="translate(0, 0)"><text y="-10.1" text-anchor="middle"><tspan class="text-outer-tspan row" x="0" y="-0.1em" dy="1.1em" text-anchor="middle"/></text></g></g><g><rect class="background"/></g><g class="edgeLabel"><g class="label" data-id="L_push_vectors_0" transform="translate(0, 0)"><text y="-10.1" text-anchor="middle"><tspan class="text-outer-tspan row" x="0" y="-0.1em" dy="1.1em" text-anchor="middle"/></text></g></g><g><rect class="background"/></g><g class="edgeLabel"><g class="label" data-id="L_vectors_topics_0" transform="translate(0, 0)"><text y="-10.1" text-anchor="middle"><tspan class="text-outer-tspan row" x="0" y="-0.1em" dy="1.1em" text-anchor="middle"/></text></g></g><g><rect class="background"/></g><g class="edgeLabel"><g class="label" data-id="L_topics_topicquery_0" transform="translate(0, 0)"><text y="-10.1" text-anchor="middle"><tspan class="text-outer-tspan row" x="0" y="-0.1em" dy="1.1em" text-anchor="middle"/></text></g></g><g><rect class="background"/></g><g class="edgeLabel"><g class="label" data-id="L_topics_topickb_0" transform="translate(0, 0)"><text y="-10.1" text-anchor="middle"><tspan class="text-outer-tspan row" x="0" y="-0.1em" dy="1.1em" text-anchor="middle"/></text></g></g><g><rect class="background"/></g><g class="edgeLabel"><g class="label" data-id="L_topics_retriever_0" transform="translate(0, 0)"><text y="-10.1" text-anchor="middle"><tspan class="text-outer-tspan row" x="0" y="-0.1em" dy="1.1em" text-anchor="middle"/></text></g></g><g><rect class="background"/></g><g class="edgeLabel"><g class="label" data-id="L_topickb_retriever_0" transform="translate(0, 0)"><text y="-10.1" text-anchor="middle"><tspan class="text-outer-tspan row" x="0" y="-0.1em" dy="1.1em" text-anchor="middle"/></text></g></g><g><rect class="background"/></g><g class="edgeLabel"><g class="label" data-id="L_topics_combined_0" transform="translate(0, 0)"><text y="-10.1" text-anchor="middle"><tspan class="text-outer-tspan row" x="0" y="-0.1em" dy="1.1em" text-anchor="middle"/></text></g></g><g><rect class="background"/></g><g class="edgeLabel"><g class="label" data-id="L_models_blob_0" transform="translate(0, 0)"><text y="-10.1" text-anchor="middle"><tspan class="text-outer-tspan row" x="0" y="-0.1em" dy="1.1em" text-anchor="middle"/></text></g></g><g><rect class="background"/></g><g class="edgeLabel"><g class="label" data-id="L_blob_ontology_0" transform="translate(0, 0)"><text y="-10.1" text-anchor="middle"><tspan class="text-outer-tspan row" x="0" y="-0.1em" dy="1.1em" text-anchor="middle"/></text></g></g><g><rect class="background"/></g><g class="edgeLabel"><g class="label" data-id="L_ontology_source_0" transform="translate(0, 0)"><text y="-10.1" text-anchor="middle"><tspan class="text-outer-tspan row" x="0" y="-0.1em" dy="1.1em" text-anchor="middle"/></text></g></g><g><rect class="background"/></g><g class="edgeLabel"><g class="label" data-id="L_source_indexer_0" transform="translate(0, 0)"><text y="-10.1" text-anchor="middle"><tspan class="text-outer-tspan row" x="0" y="-0.1em" dy="1.1em" text-anchor="middle"/></text></g></g><g><rect class="background"/></g><g class="edgeLabel"><g class="label" data-id="L_indexer_entity_0" transform="translate(0, 0)"><text y="-10.1" text-anchor="middle"><tspan class="text-outer-tspan row" x="0" y="-0.1em" dy="1.1em" text-anchor="middle"/></text></g></g><g><rect class="background"/></g><g class="edgeLabel"><g class="label" data-id="L_entity_retriever_0" transform="translate(0, 0)"><text y="-10.1" text-anchor="middle"><tspan class="text-outer-tspan row" x="0" y="-0.1em" dy="1.1em" text-anchor="middle"/></text></g></g><g><rect class="background"/></g><g class="edgeLabel"><g class="label" data-id="L_entity_combined_0" transform="translate(0, 0)"><text y="-10.1" text-anchor="middle"><tspan class="text-outer-tspan row" x="0" y="-0.1em" dy="1.1em" text-anchor="middle"/></text></g></g><g><rect class="background"/></g><g class="edgeLabel"><g class="label" data-id="L_entity_gql_0" transform="translate(0, 0)"><text y="-10.1" text-anchor="middle"><tspan class="text-outer-tspan row" x="0" y="-0.1em" dy="1.1em" text-anchor="middle"/></text></g></g><g><rect class="background"/></g><g class="edgeLabel"><g class="label" data-id="L_entity_entitykb_0" transform="translate(0, 0)"><text y="-10.1" text-anchor="middle"><tspan class="text-outer-tspan row" x="0" y="-0.1em" dy="1.1em" text-anchor="middle"/></text></g></g><g><rect class="background"/></g><g class="edgeLabel"><g class="label" data-id="L_entitykb_retriever_0" transform="translate(0, 0)"><text y="-10.1" text-anchor="middle"><tspan class="text-outer-tspan row" x="0" y="-0.1em" dy="1.1em" text-anchor="middle"/></text></g></g><g><rect class="background"/></g></g><g class="nodes"><a href="#flow-resources" data-look="classic" transform="translate(81.578125, 169.5)"><g class="node default clickable" id="my-svg-flowchart-resources-0"><rect class="basic label-container" x="-73.578125" y="-17.5" width="147.15625" height="35"/><g class="label" transform="translate(0, -9.5)"><rect/><g><rect class="background"/><text y="-10.1"><tspan class="text-outer-tspan row" x="0" y="-0.1em" dy="1.1em"><tspan font-style="normal" class="text-inner-tspan" font-weight="normal">Azure</tspan><tspan font-style="normal" class="text-inner-tspan" font-weight="normal"> resources</tspan></tspan></text></g></g></g></a><a href="#flow-identity" data-look="classic" transform="translate(265.28125, 169.5)"><g class="node default clickable" id="my-svg-flowchart-identity-1"><rect class="basic label-container" x="-84.125" y="-17.5" width="168.25" height="35"/><g class="label" transform="translate(0, -9.5)"><rect/><g><rect class="background"/><text y="-10.1"><tspan class="text-outer-tspan row" x="0" y="-0.1em" dy="1.1em"><tspan font-style="normal" class="text-inner-tspan" font-weight="normal">Entra</tspan><tspan font-style="normal" class="text-inner-tspan" font-weight="normal"> +</tspan><tspan font-style="normal" class="text-inner-tspan" font-weight="normal"> networking</tspan></tspan></text></g></g></g></a><a href="#flow-models" data-look="classic" transform="translate(448.1796875, 169.5)"><g class="node default clickable" id="my-svg-flowchart-models-3"><rect class="basic label-container" x="-72.7734375" y="-17.5" width="145.546875" height="35"/><g class="label" transform="translate(0, -9.5)"><rect/><g><rect class="background"/><text y="-10.1"><tspan class="text-outer-tspan row" x="0" y="-0.1em" dy="1.1em"><tspan font-style="normal" class="text-inner-tspan" font-weight="normal">Foundry</tspan><tspan font-style="normal" class="text-inner-tspan" font-weight="normal"> models</tspan></tspan></text></g></g></g></a><a href="#flow-index" data-look="classic" transform="translate(838.5234375, 59)"><g class="node default clickable" id="my-svg-flowchart-index-5"><rect class="basic label-container" x="-92.5" y="-17.5" width="185" height="35"/><g class="label" transform="translate(0, -9.5)"><rect/><g><rect class="background"/><text y="-10.1"><tspan class="text-outer-tspan row" x="0" y="-0.1em" dy="1.1em"><tspan font-style="normal" class="text-inner-tspan" font-weight="normal">Create</tspan><tspan font-style="normal" class="text-inner-tspan" font-weight="normal"> content</tspan><tspan font-style="normal" class="text-inner-tspan" font-weight="normal"> index</tspan></tspan></text></g></g></g></a><a href="#flow-blob" data-look="classic" transform="translate(633.48828125, 260)"><g class="node default clickable" id="my-svg-flowchart-blob-6"><rect class="basic label-container" x="-86.53515625" y="-17.5" width="173.0703125" height="35"/><g class="label" transform="translate(0, -9.5)"><rect/><g><rect class="background"/><text y="-10.1"><tspan class="text-outer-tspan row" x="0" y="-0.1em" dy="1.1em"><tspan font-style="normal" class="text-inner-tspan" font-weight="normal">Upload</tspan><tspan font-style="normal" class="text-inner-tspan" font-weight="normal"> files</tspan><tspan font-style="normal" class="text-inner-tspan" font-weight="normal"> to</tspan><tspan font-style="normal" class="text-inner-tspan" font-weight="normal"> Blob</tspan></tspan></text></g></g></g></a><a href="#flow-push" data-look="classic" transform="translate(1070.015625, 59)"><g class="node default clickable" id="my-svg-flowchart-push-9"><rect class="basic label-container" x="-73.984375" y="-17.5" width="147.96875" height="35"/><g class="label" transform="translate(0, -9.5)"><rect/><g><rect class="background"/><text y="-10.1"><tspan class="text-outer-tspan row" x="0" y="-0.1em" dy="1.1em"><tspan font-style="normal" class="text-inner-tspan" font-weight="normal">Push</tspan><tspan font-style="normal" class="text-inner-tspan" font-weight="normal"> documents</tspan></tspan></text></g></g></g></a><a href="#flow-contentkb" data-look="classic" transform="translate(1767.16796875, 25.5)"><g class="node default clickable" id="my-svg-flowchart-contentkb-11"><rect class="basic label-container" x="-93.85546875" y="-17.5" width="187.7109375" height="35"/><g class="label" transform="translate(0, -9.5)"><rect/><g><rect class="background"/><text y="-10.1"><tspan class="text-outer-tspan row" x="0" y="-0.1em" dy="1.1em"><tspan font-style="normal" class="text-inner-tspan" font-weight="normal">Content</tspan><tspan font-style="normal" class="text-inner-tspan" font-weight="normal"> KB</tspan><tspan font-style="normal" class="text-inner-tspan" font-weight="normal"> (optional)</tspan></tspan></text></g></g></g></a><a href="#flow-retriever" data-look="classic" transform="translate(1942.6484375, 156.25)"><g class="node default clickable" id="my-svg-flowchart-retriever-13"><rect class="basic label-container" x="-55.625" y="-17.5" width="111.25" height="35"/><g class="label" transform="translate(0, -9.5)"><rect/><g><rect class="background"/><text y="-10.1"><tspan class="text-outer-tspan row" x="0" y="-0.1em" dy="1.1em"><tspan font-style="normal" class="text-inner-tspan" font-weight="normal">Retriever</tspan><tspan font-style="normal" class="text-inner-tspan" font-weight="normal"> 1</tspan></tspan></text></g></g></g></a><a href="#flow-vectors" data-look="classic" transform="translate(1316.12890625, 156.25)"><g class="node default clickable" id="my-svg-flowchart-vectors-17"><rect class="basic label-container" x="-107.12109375" y="-17.5" width="214.2421875" height="35"/><g class="label" transform="translate(0, -9.5)"><rect/><g><rect class="background"/><text y="-10.1"><tspan class="text-outer-tspan row" x="0" y="-0.1em" dy="1.1em"><tspan font-style="normal" class="text-inner-tspan" font-weight="normal">Add</tspan><tspan font-style="normal" class="text-inner-tspan" font-weight="normal"> or</tspan><tspan font-style="normal" class="text-inner-tspan" font-weight="normal"> reuse</tspan><tspan font-style="normal" class="text-inner-tspan" font-weight="normal"> embeddings</tspan></tspan></text></g></g></g></a><a href="#flow-topics" data-look="classic" transform="translate(1548.28125, 156.25)"><g class="node default clickable" id="my-svg-flowchart-topics-19"><rect class="basic label-container" x="-99.03125" y="-17.5" width="198.0625" height="35"/><g class="label" transform="translate(0, -9.5)"><rect/><g><rect class="background"/><text y="-10.1"><tspan class="text-outer-tspan row" x="0" y="-0.1em" dy="1.1em"><tspan font-style="normal" class="text-inner-tspan" font-weight="normal">Build</tspan><tspan font-style="normal" class="text-inner-tspan" font-weight="normal"> +</tspan><tspan font-style="normal" class="text-inner-tspan" font-weight="normal"> link</tspan><tspan font-style="normal" class="text-inner-tspan" font-weight="normal"> topic</tspan><tspan font-style="normal" class="text-inner-tspan" font-weight="normal"> index</tspan></tspan></text></g></g></g></a><a href="#flow-topicquery" data-look="classic" transform="translate(1767.16796875, 92.5)"><g class="node default clickable" id="my-svg-flowchart-topicquery-21"><rect class="basic label-container" x="-83.578125" y="-17.5" width="167.15625" height="35"/><g class="label" transform="translate(0, -9.5)"><rect/><g><rect class="background"/><text y="-10.1"><tspan class="text-outer-tspan row" x="0" y="-0.1em" dy="1.1em"><tspan font-style="normal" class="text-inner-tspan" font-weight="normal">Topic</tspan><tspan font-style="normal" class="text-inner-tspan" font-weight="normal"> vector</tspan><tspan font-style="normal" class="text-inner-tspan" font-weight="normal"> query</tspan></tspan></text></g></g></g></a><a href="#flow-topickb" data-look="classic" transform="translate(1767.16796875, 139.5)"><g class="node default clickable" id="my-svg-flowchart-topickb-23"><rect class="basic label-container" x="-84.46484375" y="-17.5" width="168.9296875" height="35"/><g class="label" transform="translate(0, -9.5)"><rect/><g><rect class="background"/><text y="-10.1"><tspan class="text-outer-tspan row" x="0" y="-0.1em" dy="1.1em"><tspan font-style="normal" class="text-inner-tspan" font-weight="normal">Topic</tspan><tspan font-style="normal" class="text-inner-tspan" font-weight="normal"> KB</tspan><tspan font-style="normal" class="text-inner-tspan" font-weight="normal"> (optional)</tspan></tspan></text></g></g></g></a><a href="#flow-combined" data-look="classic" transform="translate(1767.16796875, 206.5)"><g class="node default clickable" id="my-svg-flowchart-combined-29"><rect class="basic label-container" x="-89.48046875" y="-17.5" width="178.9609375" height="35"/><g class="label" transform="translate(0, -9.5)"><rect/><g><rect class="background"/><text y="-10.1"><tspan class="text-outer-tspan row" x="0" y="-0.1em" dy="1.1em"><tspan font-style="normal" class="text-inner-tspan" font-weight="normal">Topic</tspan><tspan font-style="normal" class="text-inner-tspan" font-weight="normal"> +</tspan><tspan font-style="normal" class="text-inner-tspan" font-weight="normal"> Entity</tspan><tspan font-style="normal" class="text-inner-tspan" font-weight="normal"> Graph</tspan></tspan></text></g></g></g></a><a href="#flow-ontology" data-look="classic" transform="translate(838.5234375, 270)"><g class="node default clickable" id="my-svg-flowchart-ontology-33"><rect class="basic label-container" x="-72.94921875" y="-17.5" width="145.8984375" height="35"/><g class="label" transform="translate(0, -9.5)"><rect/><g><rect class="background"/><text y="-10.1"><tspan class="text-outer-tspan row" x="0" y="-0.1em" dy="1.1em"><tspan font-style="normal" class="text-inner-tspan" font-weight="normal">Define</tspan><tspan font-style="normal" class="text-inner-tspan" font-weight="normal"> ontology</tspan></tspan></text></g></g></g></a><a href="#flow-source" data-look="classic" transform="translate(1070.015625, 270)"><g class="node default clickable" id="my-svg-flowchart-source-35"><rect class="basic label-container" x="-112.9921875" y="-17.5" width="225.984375" height="35"/><g class="label" transform="translate(0, -9.5)"><rect/><g><rect class="background"/><text y="-10.1"><tspan class="text-outer-tspan row" x="0" y="-0.1em" dy="1.1em"><tspan font-style="normal" class="text-inner-tspan" font-weight="normal">Graph-enabled</tspan><tspan font-style="normal" class="text-inner-tspan" font-weight="normal"> Blob</tspan><tspan font-style="normal" class="text-inner-tspan" font-weight="normal"> source</tspan></tspan></text></g></g></g></a><a href="#flow-indexer" data-look="classic" transform="translate(1316.12890625, 270)"><g class="node default clickable" id="my-svg-flowchart-indexer-37"><rect class="basic label-container" x="-101.80859375" y="-17.5" width="203.6171875" height="35"/><g class="label" transform="translate(0, -9.5)"><rect/><g><rect class="background"/><text y="-10.1"><tspan class="text-outer-tspan row" x="0" y="-0.1em" dy="1.1em"><tspan font-style="normal" class="text-inner-tspan" font-weight="normal">Azure-managed</tspan><tspan font-style="normal" class="text-inner-tspan" font-weight="normal"> indexer</tspan></tspan></text></g></g></g></a><a href="#flow-entity" data-look="classic" transform="translate(1548.28125, 270)"><g class="node default clickable" id="my-svg-flowchart-entity-39"><rect class="basic label-container" x="-90.9609375" y="-26.299999237060547" width="181.921875" height="52.599998474121094"/><g class="label" transform="translate(0, -18.299999237060547)"><rect/><g><rect class="background"/><text y="-10.1"><tspan class="text-outer-tspan row" x="0" y="-0.1em" dy="1.1em"><tspan font-style="normal" class="text-inner-tspan" font-weight="normal">Chunk</tspan><tspan font-style="normal" class="text-inner-tspan" font-weight="normal"> +</tspan><tspan font-style="normal" class="text-inner-tspan" font-weight="normal"> entity</tspan><tspan font-style="normal" class="text-inner-tspan" font-weight="normal"> graph</tspan></tspan><tspan class="text-outer-tspan row" x="0" y="1em" dy="1.1em"><tspan font-style="normal" class="text-inner-tspan" font-weight="normal">indexes</tspan></tspan></text></g></g></g></a><a href="#flow-gql" data-look="classic" transform="translate(1767.16796875, 280)"><g class="node default clickable" id="my-svg-flowchart-gql-45"><rect class="basic label-container" x="-55.5234375" y="-17.5" width="111.046875" height="35"/><g class="label" transform="translate(0, -9.5)"><rect/><g><rect class="background"/><text y="-10.1"><tspan class="text-outer-tspan row" x="0" y="-0.1em" dy="1.1em"><tspan font-style="normal" class="text-inner-tspan" font-weight="normal">Direct</tspan><tspan font-style="normal" class="text-inner-tspan" font-weight="normal"> GQL</tspan></tspan></text></g></g></g></a><a href="#flow-entitykb" data-look="classic" transform="translate(1767.16796875, 327)"><g class="node default clickable" id="my-svg-flowchart-entitykb-47"><rect class="basic label-container" x="-72.734375" y="-17.5" width="145.46875" height="35"/><g class="label" transform="translate(0, -9.5)"><rect/><g><rect class="background"/><text y="-10.1"><tspan class="text-outer-tspan row" x="0" y="-0.1em" dy="1.1em"><tspan font-style="normal" class="text-inner-tspan" font-weight="normal">Entity</tspan><tspan font-style="normal" class="text-inner-tspan" font-weight="normal"> Graph</tspan><tspan font-style="normal" class="text-inner-tspan" font-weight="normal"> KB</tspan></tspan></text></g></g></g></a></g></g></g><defs><filter id="my-svg-drop-shadow" height="130%" width="130%"><feDropShadow dx="4" dy="4" stdDeviation="0" flood-opacity="0.06" flood-color="#000000"/></filter></defs><defs><filter id="my-svg-drop-shadow-small" height="150%" width="150%"><feDropShadow dx="2" dy="2" stdDeviation="0" flood-opacity="0.06" flood-color="#000000"/></filter></defs></svg>
+          <!-- END GENERATED MERMAID -->
+        </div>
+      </figure>
+    </div>
+    <section class="panel process-detail" id="process-detail" data-process-page aria-labelledby="process-detail-title" hidden>
+      <h2 id="process-detail-title" tabindex="-1"></h2>
+      <p id="process-detail-description"></p>
+      <div class="topic-link-layout" id="process-detail-layout">
+        <div>
+          <div id="topic-code-headings" hidden>
+            <h3>Publish the topic index</h3>
+            <p class="small">Create the companion topic index (<code>TOPIC_INDEX_NAME</code>) and upload the builder’s topic and edge records. This does not change the content index.</p>
+            <p class="small"><code>suite_deploy.py</code> uses these calls in <code>deploy_topic()</code> after the builder finishes. This example does not run from the page.</p>
+            <pre id="topic-publish-code" tabindex="0" aria-label="Python example for publishing the topic index"></pre>
+            <h3>Link the content index to the topic index</h3>
+            <p class="small">After publishing, update the existing content index’s vector field to use a <code>topicGraphProfile</code> that points to the companion topic index (<code>TOPIC_INDEX_NAME</code>). This does not upload topic records again.</p>
+          </div>
+          <pre id="process-detail-code" tabindex="0" aria-label="Example code" hidden></pre>
+        </div>
+        <aside id="topic-link-explorer" aria-labelledby="topic-link-title" hidden>
+          <h3 id="topic-link-title">Topic → chunks</h3>
+          <p class="small"><a href="#flow-combined">Open Topic + Entity Graph</a></p>
+          <p class="small" id="topic-link-chain"></p>
+          <p class="small">Purple nodes are topics; blue nodes are chunks. <code>HasSubTopic</code> arrows are stored in Azure Search. Unlabeled links show chunk membership from the matching builder release.</p>
+          <button type="button" id="topic-link-load">Load live linkage</button>
+          <p id="topic-link-status" class="small" role="status"></p>
+          <div id="topic-link-inspect" hidden>
+            <div id="topic-link-graph">
+              <div id="topic-link-controls">
+                <label>Topic <select id="topic-link-select"></select></label>
+                <button type="button" id="topic-link-fit">Fit graph</button>
+              </div>
+              <p class="small">Drag to pan, scroll or pinch to zoom, and drag nodes to reposition them. Select a chunk or arrow to inspect it.</p>
+              <div id="topic-link-diagram" role="region" aria-label="Interactive topic and chunk graph"></div>
+              <label id="topic-link-chunk-picker">Inspect a chunk <select id="topic-link-chunk-select"></select></label>
+            </div>
+            <section id="topic-link-chunk" aria-labelledby="topic-link-chunk-title">
+              <h4 id="topic-link-chunk-title">Graph inspector</h4>
+              <p id="topic-link-chunk-status" class="small" role="status">Select a chunk or a HasSubTopic arrow to inspect it.</p>
+              <pre id="topic-link-json" tabindex="0" aria-label="Selected graph item JSON" hidden></pre>
+            </section>
+          </div>
+        </aside>
+      </div>
+      <a class="source-link" id="process-detail-link"></a>
+      <a class="source-link" id="entity-graph-overview-link" href="#flow-entity" hidden>Browse all indexed entities and edges</a>
+    </section>
+    <section class="panel topic-console" id="setup-panel" data-process-page aria-labelledby="setup-title">
+      <h2 id="setup-title">Set up resources</h2>
+      <p class="small">Deploy a dedicated demo with fictional data, or skip deployment if your Search service already has the required resources.</p>
+      <figure class="process-flow setup-map" data-setup-view="base">
+        <figcaption>End-to-end setup map</figcaption>
+        <ol role="list">
+          <li><strong>1. Create or reuse Azure resources</strong><span>Create Entra-only Azure AI Search. Reuse Foundry and, for Entity Graph, an approved Blob account and its network security perimeter (NSP).</span></li>
+          <li><strong>2. Connect identities and networking</strong><span>Enable the Search managed identity and grant Search data and Foundry model access as needed. The Entity branch also configures Blob access and its NSP rule before upload.</span></li>
+          <li><strong>3. Confirm model deployments</strong><span>Reuse a Foundry embedding model for vectors and a chat model for entity extraction or synthesized answers. Retriever 1 itself is hosted by Search.</span></li>
+        </ol>
+        <p class="setup-map-fork">Then follow the ingestion and query path for each demo</p>
+        <div class="setup-map-branches">
+          <section aria-labelledby="map-retriever">
+            <h4 id="map-retriever">Content search / Retriever 1</h4>
+            <p>Create a semantic content index → push documents directly → optionally create a Search index knowledge source and a knowledge base for managed retrieval.</p>
+            <p><strong>Query:</strong> Direct <code>queryType: "agentic"</code> or managed Retriever 1. No Blob, indexer, or graph required.</p>
+          </section>
+          <section aria-labelledby="map-topic">
+            <h4 id="map-topic"><a href="#setup-topic">Topic Graph</a></h4>
+            <p>Create or reuse a vector content index → populate it with embedded chunks → build, publish, and link the topic index → optionally create a knowledge source and knowledge base.</p>
+            <p><strong>Query:</strong> Search the <em>content index</em> with topic sampling, directly or through its knowledge base. No Blob or indexer in this demo.</p>
+          </section>
+          <section aria-labelledby="map-entity">
+            <h4 id="map-entity"><a href="#setup-entity">Entity Graph</a></h4>
+            <p>Prepare Blob access and container → upload files and define the ontology → create a graph-enabled Blob knowledge source → Azure creates the managed indexer, chunk index, and graph index.</p>
+            <p><strong>Query:</strong> Use the graph-enabled knowledge base for natural language, or GQL on the graph index. No prebuilt content index required.</p>
+          </section>
+        </div>
+        <p class="small"><strong>Actual full-suite run:</strong> Retriever 1 → Entity Graph → Topic Graph. The branches do not feed one another. Retriever-only runs just the first path.</p>
+        <p class="small"><strong>Index or indexer first?</strong> When you configure an indexer yourself, create its target index before the indexer. A push upload also needs an index first, but no indexer. The Entity Graph knowledge source manages both for you.</p>
+        <p class="small"><strong>Retriever 1 is not a graph engine.</strong> Microsoft documents it against compatible content indexes and through a knowledge base. Graph Lab uses it on the semantic content index that stores the policies; it does not use Retriever 1 to sample topics or traverse entity edges.</p>
+      </figure>
+      <figure class="process-flow" data-setup-view="topic" hidden>
+        <figcaption>How Topic Graph is built</figcaption>
+        <ol role="list">
+          <li><strong>Index content</strong><span>Store text and embeddings in the content index</span></li>
+          <li><strong>Build topics</strong><span>The Microsoft Topic Graph builder reads the indexed vectors</span></li>
+          <li><strong>Publish and link</strong><span>Publish the topic index and bind it to the content vector field</span></li>
+          <li><strong>Connect retrieval</strong><span>For managed retrieval, attach the content index through a Search index knowledge source and knowledge base. Direct vector search doesn't need them.</span></li>
+        </ol>
+      </figure>
+      <figure class="process-flow" data-setup-view="entity" hidden>
+        <figcaption>How Entity Graph is ingested</figcaption>
+        <ol role="list">
+          <li><strong>Upload files to Azure Blob Storage</strong><span>After configuring Blob access, Graph Lab uploads the fictional demo file to a private container. Define the ontology before creating the source.</span></li>
+          <li><strong>Create the knowledge source</strong><span>Point the graph-enabled Blob source at the container and supply the ontology. Azure provisions the managed ingestion resources.</span></li>
+          <li><strong>Build the managed indexes</strong><span>The managed indexer reads the blobs, not an existing Search index. It writes source chunks to one index and entities and relationships to another.</span></li>
+          <li><strong>Query after extraction</strong><span>Graph Lab creates the knowledge base after the source and waits for extraction before verifying results. Direct GQL doesn't need a knowledge base.</span></li>
+        </ol>
+      </figure>
+      <div class="topic-demo-layout">
+        <form id="setup" data-setup-view="base">
+          <h3>Base resources</h3>
+          <label for="setup-scope">Deployment scope</label>
+          <select id="setup-scope"><option value="suite">Topic Graph, Entity Graph and Retriever 1</option><option value="retriever">Retriever 1 only</option></select>
+          <label for="setup-subscription">Azure subscription ID</label>
+          <input id="setup-subscription" required maxlength="36" autocomplete="off">
+          <label for="setup-group">Existing resource group</label>
+          <input id="setup-group" required maxlength="90" autocomplete="off">
+          <label for="setup-region">Azure region code</label>
+          <input id="setup-region" value="northeurope" required maxlength="30" autocomplete="off">
+          <div id="setup-suite-fields">
+            <p class="small">Full-suite deployment uploads a fictional text file to a private Azure Blob Storage container for Entity Graph. <a href="#setup-entity">See the upload and ingestion flow</a>.</p>
+            <label for="setup-storage">Approved Blob account resource ID</label>
+            <input id="setup-storage" required maxlength="250" autocomplete="off" placeholder="/subscriptions/…/resourceGroups/…/providers/Microsoft.Storage/storageAccounts/…">
+            <label for="setup-ip">Your workstation’s public IPv4</label>
+            <input id="setup-ip" required maxlength="15" autocomplete="off" placeholder="Public IPv4, no CIDR">
+            <p class="small">The Blob account must already have a dedicated NSP profile. The deployer adds one inbound Search IP rule to that profile and grants the Search identity Blob Reader at account scope. It never edits the Storage firewall. Your egress IP must already be permitted by the Storage NSP for uploads.</p>
+          </div>
+          <p class="small">Creates an Entra-only Basic Search service with Standard Knowledge Retrieval and reuses configured Foundry models. Your notes stay untouched.</p>
+          <label for="setup-confirm"><input id="setup-confirm" type="checkbox" required> I approve the Azure resource creation, role assignments, and applicable charges.</label>
+          <div class="actions"><button type="submit" class="primary" id="setup-run">Set up Azure resources</button></div>
+        </form>
+        <div data-setup-view="topic" hidden>
+          <h3 id="setup-topic" tabindex="-1">Topic Graph resources</h3>
+          <p>Graph Lab builds a topic graph with Microsoft's Topic Graph tooling, publishes the content and topic indexes, and then attaches the Search index knowledge source to a knowledge base.</p>
+          <p class="small">To provision these resources, select the full suite in <a href="#setup-panel">Base</a>. The examples below show the setup calls without deploying anything.</p>
+        </div>
+        <div data-setup-view="entity" hidden>
+          <h3 id="setup-entity" tabindex="-1">Entity Graph resources</h3>
+          <p>Full-suite deployment uploads <code>graph-lab-fictional.txt</code> to the private container using Microsoft Entra. If that blob already exists, Graph Lab leaves it in place. The deployment does not upload your NoteAssistant files.</p>
+          <p class="small">To provision these resources, select the full suite and configure Blob Storage and networking in <a href="#setup-panel">Base</a>.</p>
+          <p class="small"><a href="#entity-retrieval-create-source">View the knowledge source creation code</a> or <a href="#entity-retrieval-source">inspect the managed index names</a> in the Entity Graph tutorial.</p>
+        </div>
+        <section class="topic-demo-result" id="setup-checklist-panel" aria-labelledby="setup-checklist-title">
+          <h3 id="setup-checklist-title">Deployment checklist</h3>
+          <p class="small" id="setup-scope-note"></p>
+          <button type="button" id="setup-inventory-refresh">Check deployed resources</button>
+          <p class="small" id="setup-inventory-status" role="status">Reading the active Azure environment…</p>
+          <progress id="setup-progress" aria-label="Overall deployment progress"></progress>
+          <ol id="setup-checklist"></ol>
+          <p id="setup-status" class="small" role="status"></p>
+        </section>
+      </div>
+      <div data-setup-view="topic" hidden>
+      <h3 class="setup-code-title" id="setup-code-title">Topic Graph Python examples</h3>
+      <p class="small" id="setup-code-verification" hidden>Run this read-only check after publishing and linking. Microsoft Learn’s <a href="https://learn.microsoft.com/en-us/azure/search/agentic-knowledge-source-how-to-topic-graph?tabs=python#set-up-requests">Set up requests</a> starts here: it assumes both indexes are populated and already linked.</p>
+      <p class="small" id="setup-code-prerequisites">These examples assume the topic index is already published and linked. For SDK examples, see the <a href="https://learn.microsoft.com/en-us/azure/search/agentic-knowledge-source-how-to-topic-graph?tabs=python#prerequisites">Microsoft Learn prerequisites</a>. Editing fields only updates the examples. Create-or-update calls affect the named resources if you run them yourself; use new names when experimenting.</p>
+      <button type="button" id="setup-code-reload">Load active Topic Graph values</button>
+      <p class="small" id="setup-code-status" role="status"></p>
+      <div id="setup-code-samples"></div>
+      <p class="small"><a href="#topic-console">Open the advanced API console</a> to inspect definitions or run protected create-only tests.</p>
+      </div>
+    </section>
+    <section class="panel index-browser" id="index-browser" data-process-page aria-labelledby="index-browser-title">
+      <h2 id="index-browser-title">Search Index Browser</h2>
+      <p class="hint">Browse the live documents Azure returns. This view is read-only and omits embedding vectors and non-retrievable fields.</p>
+      <div class="actions"><button type="button" id="index-browser-load">Load indexes</button></div>
+      <form id="index-browser-form" hidden>
+        <div class="topic-api-grid">
+          <label for="index-browser-service">Search service<select id="index-browser-service"></select></label>
+          <label for="index-browser-index">Index<select id="index-browser-index" required></select></label>
+          <label for="index-browser-term">Search keywords or exact field value<input id="index-browser-term" type="search" maxlength="400" aria-describedby="index-browser-scope" placeholder="Leave blank to browse all"></label>
+        </div>
+        <p class="small" id="index-browser-scope"></p>
+        <div class="actions">
+          <button type="submit" class="primary" id="index-browser-search">Search documents</button>
+          <button type="button" id="index-browser-chunk-index" hidden>Search source chunks instead</button>
+        </div>
+      </form>
+      <p class="small" role="status" id="index-browser-status">Load indexes to get started.</p>
+      <div id="index-browser-results"></div>
+      <div class="actions" id="index-browser-pages" hidden>
+        <button type="button" id="index-browser-prev">Previous page</button>
+        <button type="button" id="index-browser-next">Next page</button>
+      </div>
+    </section>
+    <section class="panel topic-console" id="topic-retrieval-demo" data-process-page aria-labelledby="topic-retrieval-title">
+      <h2 id="topic-retrieval-title"><a class="doc-title-link" href="https://learn.microsoft.com/en-us/azure/search/agentic-knowledge-source-how-to-topic-graph?tabs=python" target="_blank" rel="noopener">Topic Graph tutorial: Knowledge-base retrieval</a></h2>
+      <p class="small">Try the three <a href="https://learn.microsoft.com/en-us/azure/search/agentic-knowledge-source-how-to-topic-graph?tabs=python">Microsoft Learn examples</a>. Keep the same question and source in each sample to compare the settings. Execute sends the equivalent <code>/retrieve</code> REST request using Microsoft Entra, not the SDK code or direct index search.</p>
+      <p class="small">Choose <a href="https://learn.microsoft.com/en-us/azure/search/agentic-retrieval-how-to-answer-synthesis#enable-answer-synthesis-in-a-retrieve-request">Synthesized answer</a> to have the knowledge base write an answer from the retrieved evidence. It does not change the topic sampling setting. For direct vector search, use <a href="#flow-topicquery">Topic vector query</a>.</p>
+      <figure class="process-flow">
+        <figcaption>Topic Graph query flow</figcaption>
+        <ol role="list">
+          <li><strong>Send the question</strong><span>Query the knowledge base</span></li>
+          <li><strong>Choose sampling</strong><span>Use stored settings, request Diverse, or turn sampling off</span></li>
+          <li><strong>Retrieve evidence</strong><span>Search the content index; topic sampling augments vector retrieval when used</span></li>
+          <li><strong>Return the result</strong><span>Extracted evidence or a synthesized answer</span></li>
+        </ol>
+      </figure>
+      <p id="topic-retrieval-status" class="small" role="status">Loading Graph Lab defaults…</p>
+      <div id="topic-retrieval-samples"></div>
+      <template id="topic-retrieval-sample">
+        <article class="topic-demo-sample">
+          <h3><a class="doc-title-link topic-demo-learn" target="_blank" rel="noopener"></a></h3>
+          <p class="small topic-demo-description"></p>
+          <div class="topic-demo-layout">
+            <form>
+              <div class="topic-api-grid"></div>
+              <h4>Python SDK example</h4>
+              <pre class="topic-demo-code" tabindex="0" aria-label="Python SDK example"></pre>
+              <button type="submit" class="primary">Execute</button>
+            </form>
+            <section class="topic-demo-result" aria-label="Azure result" aria-busy="false">
+              <h4>Azure result</h4>
+              <p class="small topic-demo-status" role="status">Execute this sample to see its response.</p>
+              <div class="topic-demo-view-choice" hidden>
+                <label>Result view
+                  <select><option value="visual">Matches</option><option value="graph">Graph</option><option value="text">Text</option></select>
+                </label>
+              </div>
+              <div class="topic-demo-visual" hidden></div>
+              <div class="topic-demo-visual topic-demo-graph" hidden></div>
+              <div class="topic-demo-evidence"></div>
+              <details class="topic-demo-activity" hidden><summary>Azure retrieval activity</summary><ul></ul></details>
+              <details class="topic-demo-raw" hidden>
+                <summary>Azure response JSON</summary>
+                <label hidden><input type="checkbox"> Show original escaped JSON</label>
+                <pre tabindex="0"></pre>
+              </details>
+            </section>
+          </div>
+        </article>
+      </template>
+    </section>
+    <section class="panel topic-console" id="entity-retrieval-demo" data-process-page aria-labelledby="entity-retrieval-title">
+      <h2 id="entity-retrieval-title"><a class="doc-title-link" href="https://learn.microsoft.com/en-us/azure/search/agentic-knowledge-source-how-to-entity-graph?tabs=python" target="_blank" rel="noopener">Entity Graph tutorial</a></h2>
+      <p class="small">Follow the <a href="https://learn.microsoft.com/en-us/azure/search/agentic-knowledge-source-how-to-entity-graph?tabs=python">Microsoft Learn Entity Graph walkthrough</a> using the demo's organization-to-product ontology. The Seattle example in Learn requires its own data and ontology.</p>
+      <p class="small">Creation examples are previews only. Execute reads or queries the active Azure resources with Entra; it does not deploy resources or upload data.</p>
+      <p class="small">Choose <a href="https://learn.microsoft.com/en-us/azure/search/agentic-retrieval-how-to-answer-synthesis#enable-answer-synthesis-in-a-retrieve-request">Synthesized answer</a> on the knowledge-base query. Look for <code>graphSearch</code> in Azure retrieval activity to see whether Foundry traversed the graph for that question. Direct GQL returns graph rows and evidence, not generated answers.</p>
+      <figure class="process-flow">
+        <figcaption>Entity Graph query flow</figcaption>
+        <ol role="list">
+          <li><strong>Choose your query</strong><span>Ask the knowledge base a relationship question or write GQL directly</span></li>
+          <li><strong>Traverse relationships</strong><span>Foundry executes GQL when it chooses graph search, or runs the GQL you supply</span></li>
+          <li><strong>Fetch supporting text</strong><span>Graph provenance can link matches back to indexed chunks</span></li>
+          <li><strong>Inspect the result</strong><span>Graph, match rows, or evidence; answer synthesis is available through the knowledge base</span></li>
+        </ol>
+      </figure>
+      <p id="entity-retrieval-load-status" class="small" role="status">Loading Graph Lab defaults…</p>
+      <article id="entity-ontology-definition" class="topic-demo-sample">
+        <h3><a class="doc-title-link" href="https://learn.microsoft.com/en-us/azure/search/agentic-knowledge-source-how-to-entity-graph?tabs=python#prepare-content-and-an-ontology" target="_blank" rel="noopener">Ontology definition</a></h3>
+        <p class="small">This is the local Python definition used when Graph Lab creates a knowledge source, not a readback from Azure. To inspect the deployed definition, use <a href="#entity-retrieval-source">Discover the managed indexes</a>.</p>
+        <p id="entity-ontology-status" class="small" role="status">Loading the ontology definition…</p>
+        <div id="entity-ontology-code" hidden>
+          <div class="topic-demo-layout ontology-layout">
+            <div>
+              <pre id="entity-ontology-python" tabindex="0" aria-label="Python ontology definition"></pre>
+              <details>
+                <summary>Generated JSON-LD</summary>
+                <pre id="entity-ontology-json" tabindex="0" aria-label="Generated JSON-LD ontology"></pre>
+              </details>
+            </div>
+            <figure class="ontology-overview">
+              <figcaption>Concepts and relationships</figcaption>
+              <div id="entity-ontology-graph"></div>
+            </figure>
+          </div>
+        </div>
+      </article>
+      <article id="entity-index-graph" aria-labelledby="entity-index-title">
+        <h3 id="entity-index-title">Indexed entities and edges</h3>
+        <p class="small">Browse the live managed graph index, not just the matches from a query. Select an entity to highlight its edges and inspect their stored records.</p>
+        <p class="small"><a href="#flow-combined">Open Topic + Entity Graph</a></p>
+        <button type="button" id="entity-index-load">Load full graph</button>
+        <p class="small" id="entity-index-status" role="status"></p>
+        <div id="entity-index-content" hidden>
+          <label for="entity-index-focus">Highlight an entity</label>
+          <select id="entity-index-focus"></select>
+          <div class="actions">
+            <button type="button" id="entity-index-fit">Fit graph</button>
+          </div>
+          <p class="small">Drag to pan or move nodes. Scroll or pinch to zoom. Select a node or arrow to inspect the indexed relationships.</p>
+          <ul id="entity-index-legend" aria-label="Edge predicates"></ul>
+          <div class="entity-index-layout">
+            <div id="entity-index-diagram" role="region" aria-label="Interactive entity graph diagram"></div>
+            <div id="entity-index-inspector" role="region" aria-label="Selected entity relationships" tabindex="0"></div>
+          </div>
+        </div>
+      </article>
+      <div id="entity-retrieval-samples"></div>
+    </section>
+    <section id="retriever-playground" data-process-page aria-labelledby="retriever-playground-title" hidden>
+      <h2 id="retriever-playground-title">Retriever 1 playground</h2>
+      <p>Choose an index for one direct search, or choose a knowledge base to compare three runs of the same question. Direct index search does not traverse entity edges or run Topic Graph vector sampling.</p>
+        <form id="retriever-playground-form">
+          <label for="retriever-target">Index or knowledge base</label>
+          <select id="retriever-target" disabled><option>Loading targets…</option></select>
+          <p id="retriever-target-hint" class="small"></p>
+          <ul id="retriever-unavailable" class="small" hidden></ul>
+          <label for="retriever-question">Question</label>
+          <textarea id="retriever-question" rows="3" maxlength="1600" required></textarea>
+          <div class="actions">
+            <button type="submit" id="retriever-playground-run" disabled>Run Retriever 1</button>
+            <button type="button" id="retriever-target-refresh">Refresh targets</button>
+          </div>
+        </form>
+      <p id="retriever-playground-status" role="status">Choose a target and run a question.</p>
+      <div id="retriever-playground-results"></div>
+      <p class="small"><a href="https://learn.microsoft.com/en-us/azure/search/agentic-retrieval-how-to-use-microsoft-retriever">Microsoft Learn: Use Microsoft Retriever 1</a></p>
+    </section>
+    <section id="combined-graph" data-process-page aria-labelledby="combined-title" hidden>
+      <h2 id="combined-title">Topic + Entity Graph</h2>
+      <p>Each translucent circle is a topic. An entity in an intersection has matching source passages in every topic that covers it.</p>
+      <p class="small">Graph Lab builds this overlay when you load it; Azure Search does not store these topic-to-entity links. Arrows are stored Entity Graph relationships. Entities without a matching passage stay outside the circles.</p>
+      <button id="combined-load" type="button">Load combined graph</button>
+      <p id="combined-status" class="small" role="status"></p>
+      <p id="combined-layout-note" class="small" hidden></p>
+      <div id="combined-content" hidden>
+        <div class="combined-controls">
+          <label>Zoom to <select id="combined-topic"></select></label>
+          <label>Inspect <select id="combined-entity"></select></label>
+          <button id="combined-fit" type="button">Fit graph</button>
+          <label><input id="combined-edges" type="checkbox" checked> Show entity relationships</label>
+        </div>
+        <p class="small">Drag the background to pan, scroll or pinch to zoom, and drag entities within their regions. Click a circle to zoom in, an entity to inspect its evidence, or an arrow to read its stored records.</p>
+        <div class="entity-index-layout">
+          <div id="combined-diagram" role="region" aria-label="Entity Graph with shaded topic circles"></div>
+          <div id="combined-inspector" role="region" aria-label="Topic placement evidence and entity relationships" tabindex="0"></div>
+        </div>
+      </div>
+      <p class="small"><a href="#flow-topics">Topic Graph</a> · <a href="#flow-entity">Entity Graph</a></p>
+    </section>
+    <section id="explore-graphs" data-process-page aria-labelledby="explore-graphs-title">
+    <h2 class="explorer-switch" id="explore-graphs-title">Query playground</h2>
+    <p class="small playground-modes">Try your own questions with direct Topic Graph vector search, Entity Graph, or Retriever 1. The Topic Graph option queries the index directly, not the knowledge base used in the <a href="#topic-retrieval-demo">Topic Graph tutorial</a>.</p>
+    <div class="switch playground-modes" aria-label="Graph type">
+      <button id="topic" type="button" aria-pressed="true"><strong>Topic Graph: Direct vector search</strong><span>Compare Balanced, Diverse, and Off on the content index</span></button>
+      <button id="entity" type="button" aria-pressed="false"><strong>Entity graph</strong><span>Follow people, organizations, products and features</span></button>
+      <button id="retriever" type="button" aria-pressed="false"><strong>Microsoft Retriever 1</strong><span>Generate a cited answer from fictional policies</span></button>
+    </div>
+    <p id="playground-wait" role="status" hidden>Waiting for the previous query to finish before switching modes.</p>
+    <div class="layout">
+      <section class="panel controls" aria-labelledby="explore">
+        <h2 id="explore">Explore</h2>
+        <form id="query">
+          <label for="dataset">Data source</label>
+          <select id="dataset" disabled><option value="azure">Foundry IQ · live (Entra)</option></select>
+          <p class="hint" id="source-hint"></p>
+          <details id="note-config" hidden>
+            <summary>Configure NoteAssistant sources</summary>
+            <label for="note-filter">Find a session by name</label>
+            <input id="note-filter" type="search" autocomplete="off">
+            <div class="actions">
+              <button id="note-defaults" type="button">Reset to latest four</button>
+              <button id="note-clear" type="button">Clear selection</button>
+            </div>
+            <p id="note-count" class="small" role="status"></p>
+            <div id="note-list" aria-label="Available NoteAssistant sessions"></div>
+          </details>
+          <label for="strategy">Retrieval mode</label>
+          <select id="strategy"></select>
+          <label for="question">Question</label>
+          <textarea id="question" maxlength="1600" rows="3"></textarea>
+          <div class="actions">
+            <button type="submit" class="primary" id="run">Run query</button>
+            <button type="button" class="info-button" id="query-code-open" aria-label="Preview query code" aria-haspopup="dialog" title="Preview query code">ⓘ</button>
+            <button type="button" id="status" hidden>Azure status</button>
+          </div>
+        </form>
+        <dialog id="query-code" class="panel query-code" aria-labelledby="query-code-title">
+          <div class="result-header">
+            <h2 id="query-code-title">Query code</h2>
+            <form method="dialog"><button autofocus>Close</button></form>
+          </div>
+          <p class="small">Preview only. Graph Lab may read the knowledge source definition to resolve the target, but does not run the query.</p>
+          <p id="query-code-status" class="small" role="status"></p>
+          <div id="query-code-content" hidden>
+            <h3>Python</h3>
+            <pre id="query-code-python"></pre>
+            <h3>Azure AI Search REST request</h3>
+            <pre id="query-code-rest"></pre>
+          </div>
+        </dialog>
+        <details id="topic-setup" hidden>
+          <summary>Set up live Topic Graph</summary>
+          <p>Prepare a content index and its linked topic centroid index on the same Search service with the <a href="https://learn.microsoft.com/en-us/azure/search/agentic-knowledge-source-how-to-topic-graph">Foundry IQ Topic Graph guide</a>. Use <code>text-embedding-3-large</code> for indexing and query vectorization.</p>
+          <p>From the Graph Lab folder, run:</p>
+          <pre id="topic-setup-command">python -B lab.py provision topic --content-index YOUR_CONTENT_INDEX --confirm</pre>
+          <p>The Retriever 1 setup button does not create Topic Graph resources. There is no local fallback.</p>
+        </details>
+        <p class="small"><a href="#topic-console">Advanced API console</a></p>
+        <p class="small"><a href="#index-browser">Browse Search indexes</a></p>
+        <p class="small">Live API: 2026-11-01-preview · No API keys</p>
+      </section>
+      <section class="panel results" aria-labelledby="results-title" aria-busy="false">
+        <div class="result-header"><h2 id="results-title">Results</h2><span class="small" id="elapsed"></span></div>
+        <p id="feedback" role="status">Run a query to inspect evidence and graph details.</p>
+        <div id="output"></div>
+      </section>
+    </div>
+    </section>
+    <section class="panel topic-console" id="topic-console" data-process-page aria-labelledby="topic-console-title">
+      <h2 id="topic-console-title">Topic Graph API console</h2>
+      <p class="hint">Compare the <a href="https://learn.microsoft.com/en-us/azure/search/agentic-knowledge-source-how-to-topic-graph?tabs=python">Microsoft Learn knowledge-base walkthrough</a> with the direct vector query used by Graph Lab. Both use native Azure APIs. Entra authentication stays on the server.</p>
+      <form id="topic-api-form">
+        <fieldset>
+          <legend>1. Variables</legend>
+          <p class="small">Starts with Graph Lab's live configuration. Overrides here don't change the Explore panel or saved settings.</p>
+          <div class="topic-api-grid" id="topic-api-variables"></div>
+          <button type="button" id="topic-api-reset">Reload Graph Lab defaults</button>
+          <p class="small" id="topic-api-defaults-status" role="status"></p>
+        </fieldset>
+        <fieldset>
+          <legend>2. Request and code samples</legend>
+          <label for="topic-api-operation">API operation</label>
+          <select id="topic-api-operation">
+            <optgroup label="Microsoft Learn walkthrough">
+              <option value="content">GET content index definition</option>
+              <option value="topics">GET topic index definition</option>
+              <option value="create-source">PUT create test knowledge source</option>
+              <option value="source">GET stored knowledge source</option>
+              <option value="create-base">PUT create test knowledge base</option>
+              <option value="base">GET stored knowledge base</option>
+              <option value="stored">POST retrieve with stored settings</option>
+              <option value="diverse">POST retrieve with Diverse override</option>
+              <option value="none">POST retrieve with sampling Off</option>
+            </optgroup>
+            <optgroup label="Graph Lab direct vector search">
+              <option value="vector-balanced">POST vector search: stored profile</option>
+              <option value="vector-diverse">POST vector search: Diverse</option>
+              <option value="vector-none">POST vector search: Off</option>
+            </optgroup>
+          </select>
+          <p class="small" id="topic-api-operation-note"></p>
+          <div class="actions">
+            <button type="button" id="topic-api-preview">Update snippets</button>
+            <button type="submit" class="primary" id="topic-api-run">Run API request</button>
+          </div>
+          <label id="topic-api-confirm-label" hidden><input type="checkbox" id="topic-api-confirm"> Create a new Azure test resource with a name ending in <code>-api-test</code>. No existing resource will be overwritten.</label>
+          <p role="status" id="topic-api-status" class="small"></p>
+          <div class="topic-api-grid">
+            <details open><summary>REST request sent by Graph Lab</summary><pre id="topic-api-http"></pre></details>
+            <details open><summary>Python using Graph Lab's REST helper</summary><pre id="topic-api-python"></pre></details>
+          </div>
+          <details><summary>Microsoft Learn: corresponding Python SDK call</summary>
+            <p class="small">These examples show the equivalent SDK calls; Graph Lab sends REST. See the <a id="topic-api-learn" href="https://learn.microsoft.com/en-us/azure/search/agentic-knowledge-source-how-to-topic-graph?tabs=python">full Learn example and SDK prerequisites</a> for setup and model imports.</p>
+            <pre id="topic-api-sdk"></pre>
+          </details>
+        </fieldset>
+      </form>
+      <h3>3. Azure response</h3>
+      <p class="small" id="topic-api-response-meta">Run an operation to see Azure's HTTP status, request ID when available, and JSON response.</p>
+      <pre class="topic-api-output" id="topic-api-response" tabindex="0" aria-label="Azure response JSON"></pre>
+    </section>
+  </main>
+</body>
+</html>

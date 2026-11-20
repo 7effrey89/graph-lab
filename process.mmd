@@ -1,0 +1,58 @@
+---
+config:
+  securityLevel: loose
+  htmlLabels: false
+  flowchart:
+    nodeSpacing: 12
+    rankSpacing: 26
+    padding: 8
+---
+flowchart LR
+  resources["Azure resources"] --> identity["Entra + networking"]
+  identity --> models["Foundry models"]
+
+  models --> index["Create content index"]
+  blob -.-> index
+  index --> push["Push documents"]
+  push --> contentkb["Content KB (optional)"]
+  push --> retriever["Retriever 1"]
+  contentkb -.-> retriever
+
+  push --> vectors["Add or reuse embeddings"]
+  vectors --> topics["Build + link topic index"]
+  topics --> topicquery["Topic vector query"]
+  topics --> topickb["Topic KB (optional)"]
+  topics --> retriever
+  topickb -.-> retriever
+  topics -.-> combined["Topic + Entity Graph"]
+
+  models --> blob["Upload files to Blob"]
+  blob --> ontology["Define ontology"]
+  ontology --> source["Graph-enabled Blob source"]
+  source --> indexer["Azure-managed indexer"]
+  indexer --> entity["Chunk + entity graph indexes"]
+  entity --> retriever
+  entity -.-> combined
+  entity --> gql["Direct GQL"]
+  entity --> entitykb["Entity Graph KB"]
+  entitykb -.-> retriever
+
+  click resources href "#flow-resources"
+  click identity href "#flow-identity"
+  click models href "#flow-models"
+  click index href "#flow-index"
+  click push href "#flow-push"
+  click contentkb href "#flow-contentkb"
+  click retriever href "#flow-retriever"
+  click vectors href "#flow-vectors"
+  click topics href "#flow-topics"
+  click topicquery href "#flow-topicquery"
+  click topickb href "#flow-topickb"
+  click blob href "#flow-blob"
+  click ontology href "#flow-ontology"
+  click source href "#flow-source"
+  click indexer href "#flow-indexer"
+  click entity href "#flow-entity"
+  click combined href "#flow-combined"
+  click gql href "#flow-gql"
+  click entitykb href "#flow-entitykb"

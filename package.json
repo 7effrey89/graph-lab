@@ -1,0 +1,7 @@
+{
+  "name": "foundry-graph-lab",
+  "private": true,
+  "dependencies": {
+    "cytoscape": "3.33.1"
+  }
+}
